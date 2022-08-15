@@ -14,6 +14,11 @@
   * along with this program.  If not, see <http://www.gnu.org/licenses/>.
   */
 
+#ifdef TAPPING_TERM
+#undef TAPPING_TERM
+#endif // TAPPING_TERM
+#define TAPPING_TERM 150
+
 #include QMK_KEYBOARD_H
 
 enum anne_pro_layers {
