@@ -23,10 +23,10 @@
 
 enum anne_pro_layers {
     BASE,
+    QWERTY,
     FN1,
     FN2,
     FN3,
-    QWERTY,
 };
 
 // clang-format off
@@ -49,7 +49,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, KC_AP2_BT1, KC_AP2_BT2, KC_AP2_BT3, KC_AP2_BT4, _______, _______, _______, _______, KC_AP_RGB_MOD, KC_AP_RGB_TOG, KC_AP_RGB_VAD, KC_AP_RGB_VAI, _______,
     MO(FN2), _______,    KC_UP,      _______,    _______,    _______, _______, _______, _______, _______,       KC_PSCR,       KC_HOME,       KC_END,        _______,
     _______, KC_LEFT,    KC_DOWN,    KC_RGHT,    _______,    _______, _______, _______, _______, _______,       KC_PGUP,       KC_PGDN,       _______,
-    _______,             _______,    _______,    _______,    _______, _______, _______, _______, _______,       KC_INS,        KC_DEL,        _______,
+    _______,             TO(BASE),TG(QWERTY),    _______,    _______, _______, _______, _______, _______,       KC_INS,        KC_DEL,        _______,
     _______, _______,    _______,                                     _______,                   _______,       MO(FN1),       MO(FN2),       _______
  ),
  [FN3] = LAYOUT_60_ansi(
