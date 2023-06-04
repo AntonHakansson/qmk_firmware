@@ -3,9 +3,9 @@
 * Compile keymap
 From project root run:
 #+begin_src bash
-  nix-shell                       # Enter nix shell
+  # nix-shell                       # Enter nix shell
   qmk compile -kb annepro2/c15 -km hakanssn # Compile annepro2_c15_hakanssn.bin
-  #+end_src
+#+end_src
 
 * Flash AnnePro2
 #+begin_src bash
@@ -13,3 +13,12 @@ From project root run:
   # Replug keyboard while holding down ESC and then run
   RUST_BACKTRACE=1 doas ./result/bin/annepro2_tools /home/hakanssn/repos/qmk_firmware/annepro2_c15_hakanssn.bin
 #+end_src
+
+* Home row mod
+
+I'm currently evaluating home mod rows.
+Initially typing fast would trigger the layer key(s) and cause unintended actions.
+However, once I configured ~TAPPING_TERM_PER_KEY~ and extended the tapping period for the home row it is way better.
+An unforeseen small disadvantage is that holding down the home row keys does not repeat the key.
+You have to tap and then tap-hold to get the key to repeat. In a modal editing environment this can be slightly inconvenient.
+Furthermore, it feels slightly more sluggish to type.
