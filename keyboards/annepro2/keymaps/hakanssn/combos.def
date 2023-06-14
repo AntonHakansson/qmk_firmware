@@ -1,0 +1,8 @@
+COMB(lctl,     KC_LCTL, KC_S, KC_T)
+COMB(lalt,     KC_LALT, KC_R, KC_T)
+COMB(lgui,     KC_LGUI, KC_A, KC_T)
+COMB(rctl,     KC_RCTL, KC_N, KC_E)
+COMB(lalt2,    KC_LALT, KC_N, KC_I)
+COMB(rgui,     KC_RGUI, KC_N, KC_O)
+
+COMB(ctrlbspc, LCTL(KC_BSPC), KC_U, KC_Y)
