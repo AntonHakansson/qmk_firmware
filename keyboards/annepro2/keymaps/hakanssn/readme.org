@@ -20,5 +20,6 @@ I'm currently evaluating home mod rows.
 Initially typing fast would trigger the layer key(s) and cause unintended actions.
 However, once I configured ~TAPPING_TERM_PER_KEY~ and extended the tapping period for the home row it is way better.
 An unforeseen small disadvantage is that holding down the home row keys does not repeat the key.
-You have to tap and then tap-hold to get the key to repeat. In a modal editing environment this can be slightly inconvenient.
+You have to tap and then tap-hold to get the key to repeat.
+In a modal editing environment this can be slightly inconvenient.
 Furthermore, it feels slightly more sluggish to type.
