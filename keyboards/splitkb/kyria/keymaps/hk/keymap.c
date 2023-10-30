@@ -1,41 +1,5 @@
-/* Copyright 2019 Thomas Baart <thomas@splitkb.com>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 #include QMK_KEYBOARD_H
-
-enum layers {
-    _COLEMAK_DH = 0,
-    _NAV,
-    _SYM,
-    _FUNCTION,
-    _ADJUST,
-};
-
-
-// Aliases for readability
-#define COLEMAK  DF(_COLEMAK_DH)
-
-#define SYM      MO(_SYM)
-#define NAV      MO(_NAV)
-#define FKEYS    MO(_FUNCTION)
-#define ADJUST   MO(_ADJUST)
-
-#define CTL_ESC  MT(MOD_LCTL, KC_ESC)
-#define CTL_QUOT MT(MOD_RCTL, KC_QUOTE)
-#define CTL_MINS MT(MOD_RCTL, KC_MINUS)
-#define ALT_ENT  MT(MOD_LALT, KC_ENT)
+#include "hk_keymap.h"
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -43,21 +7,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Base Layer: Colemak DH
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |  Tab   |   Q  |   W  |   F  |   P  |   B  |                              |   J  |   L  |   U  |   Y  | ;  : |  Bksp  |
+ * |  Tab   |   Q  |   W  |   F  |   P  |   B  |                              |   J  |   L  |   U  |   Y  | ;  : | {      |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |Ctrl/Esc|   A  |   R  |   S  |   T  |   G  |                              |   M  |   N  |   E  |   I  |   O  |Ctrl/' "|
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * | LShift |   Z  |   X  |   C  |   D  |   V  | [ {  |CapsLk|  |F-keys|  ] } |   K  |   H  | ,  < | . >  | /  ? | RShift |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |Adjust| LGUI | LAlt/| Space| Nav  |  | Sym  | Bksp | AltGr| RGUI | Menu |
- *                        |      |      | Enter|      |      |  |      |      |      |      |      |
+ *                        |Adjust| LGUI | LAlt/|LShift| Nav  |  | Sym  |RShift| AltGr| RGUI | Menu |
+ *                        |      |      | Enter| Space|      |  |      | Bksp | Enter|      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
     [_COLEMAK_DH] = LAYOUT(
-     KC_TAB  , KC_Q ,  KC_W   ,  KC_F  ,   KC_P ,   KC_B ,                                        KC_J,   KC_L ,  KC_U ,   KC_Y ,KC_SCLN, KC_BSPC,
-     CTL_ESC , KC_A ,  KC_R   ,  KC_S  ,   KC_T ,   KC_G ,                                        KC_M,   KC_N ,  KC_E ,   KC_I ,  KC_O , CTL_QUOT,
-     KC_LSFT , KC_Z ,  KC_X   ,  KC_C  ,   KC_D ,   KC_V , KC_LBRC,KC_CAPS,     FKEYS  , KC_RBRC, KC_K,   KC_H ,KC_COMM, KC_DOT ,KC_SLSH, KC_RSFT,
-                                 ADJUST, KC_LGUI, ALT_ENT, KC_SPC , NAV   ,     SYM    , KC_BSPC ,KC_RALT, KC_RGUI, KC_APP
+     KC_TAB  , KC_Q ,  KC_W   ,  KC_F  ,   KC_P ,   KC_B ,                                           KC_J,   KC_L ,  KC_U ,   KC_Y ,KC_SCLN, LSFT(KC_LBRC),
+     CTL_ESC , KC_A ,  KC_R   ,  KC_S  ,   KC_T ,   KC_G ,                                           KC_M,   KC_N ,  KC_E ,   KC_I ,  KC_O , CTL_QUOT,
+     KC_LSFT , KC_Z ,  KC_X   ,  KC_C  ,   KC_D ,   KC_V , KC_LBRC,KC_CAPS,     FKEYS , KC_RBRC,     KC_K,   KC_H ,KC_COMM, KC_DOT ,KC_SLSH, KC_RSFT,
+                                 ADJUST, KC_LGUI, ALT_ENT,LSFT_SPC, NAV   ,     SYM   ,RSFT_BSPC,RALT_ENT, KC_RGUI, KC_APP
     ),
 
 /*
@@ -166,3 +130,106 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 //     ),
 };
+
+enum combo_events {
+  // ". <one-shot-shift>" i.e. dot, space and capitalize next letter.
+  // This helps to quickly end a sentence and begin another one
+  // without having to hit shift.
+  SENTENCE_END,
+
+  // Backspace steno-lite combos
+  STENO_AND,
+  STENO_THE,
+  STENO_HAVE,
+  STENO_HAVENT,
+  STENO_WHAT,
+  STENO_WHICH,
+  STENO_BECAUSE,
+  STENO_ABOUT,
+  STENO_YOU,
+  STENO_WITHOUT,
+  STENO_IN_THE,
+
+  STENO_OULD,
+  STENO_MENT,
+  STENO_TION,
+  STENO_ING,
+  STENO_OUGHT,
+  STENO_QUE,
+};
+
+const uint16_t PROGMEM COMMA_DOT_COMBO[] = {KC_COMMA,  KC_DOT,  COMBO_END};
+
+const uint16_t PROGMEM BSPC_A_COMBO[]    = {RSFT_BSPC,  KC_A,  COMBO_END};
+const uint16_t PROGMEM BSPC_T_COMBO[]    = {RSFT_BSPC,  KC_T,  COMBO_END};
+const uint16_t PROGMEM BSPC_H_COMBO[]    = {RSFT_BSPC,  KC_H,  COMBO_END};
+const uint16_t PROGMEM BSPC_W_COMBO[]    = {RSFT_BSPC,  KC_W,  COMBO_END};
+const uint16_t PROGMEM BSPC_S_COMBO[]    = {RSFT_BSPC,  KC_S,  COMBO_END};
+const uint16_t PROGMEM BSPC_C_COMBO[]    = {RSFT_BSPC,  KC_C,  COMBO_END};
+const uint16_t PROGMEM BSPC_B_COMBO[]    = {RSFT_BSPC,  KC_B,  COMBO_END};
+const uint16_t PROGMEM BSPC_U_COMBO[]    = {RSFT_BSPC,  KC_U,  COMBO_END};
+const uint16_t PROGMEM BSPC_W_O_COMBO[]    = {RSFT_BSPC, KC_W, KC_O,  COMBO_END};
+const uint16_t PROGMEM BSPC_H_T_COMBO[]  = {RSFT_BSPC,  KC_H,  KC_T,  COMBO_END};
+const uint16_t PROGMEM BSPC_I_T_COMBO[]  = {RSFT_BSPC,  KC_I,  KC_T,  COMBO_END};
+
+const uint16_t PROGMEM BSPC_D_COMBO[]    = {RSFT_BSPC,  KC_D,  COMBO_END};
+const uint16_t PROGMEM BSPC_M_COMBO[]    = {RSFT_BSPC,  KC_M,  COMBO_END};
+const uint16_t PROGMEM BSPC_I_COMBO[]    = {RSFT_BSPC,  KC_I,  COMBO_END};
+const uint16_t PROGMEM BSPC_G_COMBO[]    = {RSFT_BSPC,  KC_G,  COMBO_END};
+const uint16_t PROGMEM BSPC_O_COMBO[]    = {RSFT_BSPC,  KC_O,  COMBO_END};
+const uint16_t PROGMEM BSPC_Q_COMBO[]    = {RSFT_BSPC,  KC_Q,  COMBO_END};
+
+combo_t key_combos[] = {
+  [SENTENCE_END]  = COMBO_ACTION(COMMA_DOT_COMBO),
+  [STENO_AND]     = COMBO_ACTION(BSPC_A_COMBO),
+  [STENO_THE]     = COMBO_ACTION(BSPC_T_COMBO),
+  [STENO_HAVE]    = COMBO_ACTION(BSPC_H_COMBO),
+  [STENO_HAVENT]  = COMBO_ACTION(BSPC_H_T_COMBO),
+  [STENO_WHAT]    = COMBO_ACTION(BSPC_W_COMBO),
+  [STENO_WHICH]   = COMBO_ACTION(BSPC_S_COMBO),
+  [STENO_BECAUSE] = COMBO_ACTION(BSPC_C_COMBO),
+  [STENO_ABOUT]   = COMBO_ACTION(BSPC_B_COMBO),
+  [STENO_YOU]   = COMBO_ACTION(BSPC_U_COMBO),
+  [STENO_WITHOUT] = COMBO_ACTION(BSPC_W_O_COMBO),
+  [STENO_IN_THE]  = COMBO_ACTION(BSPC_I_T_COMBO),
+  [STENO_OULD]    = COMBO_ACTION(BSPC_D_COMBO),
+  [STENO_MENT]    = COMBO_ACTION(BSPC_M_COMBO),
+  [STENO_TION]    = COMBO_ACTION(BSPC_I_COMBO),
+  [STENO_ING]     = COMBO_ACTION(BSPC_G_COMBO),
+  [STENO_OUGHT]   = COMBO_ACTION(BSPC_O_COMBO),
+  [STENO_QUE]     = COMBO_ACTION(BSPC_Q_COMBO),
+};
+
+void process_combo_event(uint16_t combo_index, bool pressed) {
+  switch(combo_index) {
+  case SENTENCE_END:
+    if (pressed) {
+      tap_code(KC_DOT);
+      tap_code(KC_SPC);
+      add_oneshot_mods(MOD_BIT(KC_LEFT_SHIFT));
+    } break;
+  case STENO_AND:     if (pressed) { SEND_STRING("and "); } break;
+  case STENO_THE:     if (pressed) { SEND_STRING("the "); } break;
+  case STENO_HAVE:    if (pressed) { SEND_STRING("have "); } break;
+  case STENO_HAVENT:  if (pressed) { SEND_STRING("haven't "); } break;
+  case STENO_WHAT:    if (pressed) { SEND_STRING("what "); } break;
+  case STENO_WHICH:   if (pressed) { SEND_STRING("which "); } break;
+  case STENO_BECAUSE: if (pressed) { SEND_STRING("because "); } break;
+  case STENO_ABOUT:   if (pressed) { SEND_STRING("about "); } break;
+  case STENO_YOU:     if (pressed) { SEND_STRING("you "); } break;
+  case STENO_WITHOUT: if (pressed) { SEND_STRING("without "); } break;
+  case STENO_IN_THE:  if (pressed) { SEND_STRING("in the "); } break;
+
+  case STENO_OULD:    if (pressed) { SEND_STRING("ould "); } break;
+  case STENO_MENT:    if (pressed) { SEND_STRING("ment "); } break;
+  case STENO_TION:    if (pressed) { SEND_STRING("tion "); } break;
+  case STENO_ING:     if (pressed) { SEND_STRING("ing "); } break;
+  case STENO_OUGHT:   if (pressed) { SEND_STRING("ought "); } break;
+  case STENO_QUE:     if (pressed) { SEND_STRING("que"); } break;
+  }
+}
+
+
+/* Local Variables: */
+/* compile-command: "nix run nixpkgs#qmk -- compile -e CONVERT_TO=elite_pi" */
+/* End: */
