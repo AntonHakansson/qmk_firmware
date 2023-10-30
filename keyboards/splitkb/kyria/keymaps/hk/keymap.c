@@ -154,7 +154,7 @@ enum combo_events {
   STENO_MENT,
   STENO_TION,
   STENO_ING,
-  STENO_OUGHT,
+  STENO_OUGH,
   STENO_QUE,
 };
 
@@ -196,7 +196,7 @@ combo_t key_combos[] = {
   [STENO_MENT]    = COMBO_ACTION(BSPC_M_COMBO),
   [STENO_TION]    = COMBO_ACTION(BSPC_I_COMBO),
   [STENO_ING]     = COMBO_ACTION(BSPC_G_COMBO),
-  [STENO_OUGHT]   = COMBO_ACTION(BSPC_O_COMBO),
+  [STENO_OUGH]   = COMBO_ACTION(BSPC_O_COMBO),
   [STENO_QUE]     = COMBO_ACTION(BSPC_Q_COMBO),
 };
 
@@ -224,7 +224,7 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
   case STENO_MENT:    if (pressed) { SEND_STRING("ment "); } break;
   case STENO_TION:    if (pressed) { SEND_STRING("tion "); } break;
   case STENO_ING:     if (pressed) { SEND_STRING("ing "); } break;
-  case STENO_OUGHT:   if (pressed) { SEND_STRING("ought "); } break;
+  case STENO_OUGH:    if (pressed) { SEND_STRING("ough"); } break;
   case STENO_QUE:     if (pressed) { SEND_STRING("que"); } break;
   }
 }
