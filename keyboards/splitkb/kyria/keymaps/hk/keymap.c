@@ -66,23 +66,29 @@ enum combo_events {
   C_SENTENCE_END,
 
   // steno-lite combos
+#define COMB(name, ...) name,
 #define SUBS(name, ...) name,
 #include "combos.def"
 #undef SUBS
+#undef COMB
 };
 
 const uint16_t PROGMEM COMMA_DOT_COMBO[] = {KC_COMMA,  KC_DOT,  COMBO_END};
 
+#define COMB(name, str, ...) const uint16_t PROGMEM name##_COMBO[] = { __VA_ARGS__, COMBO_END };
 #define SUBS(name, str, ...) const uint16_t PROGMEM name##_COMBO[] = { __VA_ARGS__, COMBO_END };
 #include "combos.def"
 #undef SUBS
+#undef COMB
 
 combo_t key_combos[] = {
   [C_SENTENCE_END]  = COMBO_ACTION(COMMA_DOT_COMBO),
 
+#define COMB(name, combo, ...) [name] = COMBO(name##_COMBO, combo),
 #define SUBS(name, str, ...) [name] = COMBO_ACTION(name##_COMBO),
 #include "combos.def"
 #undef SUBS
+#undef COMB
 };
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
@@ -93,9 +99,11 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
       tap_code(KC_SPC);
       add_oneshot_mods(MOD_BIT(KC_LEFT_SHIFT));
     } break;
+#define COMB(...)
 #define SUBS(name, str, ...) case name: if (pressed) { SEND_STRING(str); } break;
 #include "combos.def"
 #undef SUBS
+#undef COMB
   }
 }
 
