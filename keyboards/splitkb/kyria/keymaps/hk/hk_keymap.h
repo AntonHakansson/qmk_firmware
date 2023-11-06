@@ -23,3 +23,4 @@ enum layers {
 #define RALT_ENT  MT(MOD_RALT, KC_ENT)
 #define LSFT_SPC  MT(MOD_LSFT, KC_SPC)
 #define RSFT_BSPC  MT(MOD_RSFT, KC_BSPC)
+#define OS_LSFT  OSM(MOD_LSFT)
