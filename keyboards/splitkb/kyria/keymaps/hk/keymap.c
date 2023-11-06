@@ -1,7 +1,6 @@
 #include QMK_KEYBOARD_H
 #include "hk_keymap.h"
 
-// TODO: Caps word
 // TODO: X-Case?
 
 // clang-format off
@@ -9,7 +8,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_COLEMAK_DH] = LAYOUT(
      KC_TAB  , KC_Q ,  KC_W   ,  KC_F  ,   KC_P ,   KC_B ,                                           KC_J,   KC_L ,  KC_U ,   KC_Y ,KC_SCLN, LSFT(KC_LBRC),
      CTL_ESC , KC_A ,  KC_R   ,  KC_S  ,   KC_T ,   KC_G ,                                           KC_M,   KC_N ,  KC_E ,   KC_I ,  KC_O , CTL_QUOT,
-     OS_LSFT , KC_Z ,  KC_X   ,  KC_C  ,   KC_D ,   KC_V , KC_LBRC,KC_CAPS,     FKEYS , KC_RBRC,     KC_K,   KC_H ,KC_COMM, KC_DOT ,KC_SLSH, KC_RSFT,
+     OS_LSFT , KC_Z ,  KC_X   ,  KC_C  ,   KC_D ,   KC_V , KC_LBRC,CW_TOGG,     FKEYS , KC_RBRC,     KC_K,   KC_H ,KC_COMM, KC_DOT ,KC_SLSH, OS_RSFT,
                                  ADJUST, KC_LGUI, ALT_ENT,LSFT_SPC, NAV   ,     SYM   ,RSFT_BSPC,RALT_ENT, KC_RGUI, KC_APP
     ),
     [_NAV] = LAYOUT(
@@ -58,6 +57,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 //     ),
 };
+
 
 enum combo_events {
   // ". <one-shot-shift>" i.e. dot, space and capitalize next letter.
