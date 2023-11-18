@@ -1,17 +1,17 @@
-#+title: hakanssn annepro2 keymap
+#+title: hk annepro2 keymap
 
 * Compile keymap
 From project root run:
 #+begin_src bash
   # nix-shell                       # Enter nix shell
-  qmk compile -kb annepro2/c15 -km hakanssn # Compile annepro2_c15_hakanssn.bin
+  qmk compile -kb annepro2/c15 -km hk # Compile annepro2_c15_hk.bin
 #+end_src
 
 * Flash AnnePro2
 #+begin_src bash
   nix-build -E 'with import <nixpkgs> {}; callPackage ./annepro2_tools.nix {}' # compile flashing tool
   # Replug keyboard while holding down ESC and then run
-  RUST_BACKTRACE=1 doas ./result/bin/annepro2_tools /home/hakanssn/repos/qmk_firmware/annepro2_c15_hakanssn.bin
+  RUST_BACKTRACE=1 doas ./result/bin/annepro2_tools /home/hakanssn/repos/qmk_firmware/annepro2_c15_hk.bin
 #+end_src
 
 * Home row mod
