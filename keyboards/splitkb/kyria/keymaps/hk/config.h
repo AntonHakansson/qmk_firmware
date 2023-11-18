@@ -1,5 +1,7 @@
 #pragma once
 
+#define COMBO_TERM 40
+
 #ifdef RGBLIGHT_ENABLE
 #    define RGBLIGHT_EFFECT_BREATHING
 #    define RGBLIGHT_EFFECT_RAINBOW_MOOD
