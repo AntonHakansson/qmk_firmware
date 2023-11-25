@@ -121,5 +121,5 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
 
 
 /* Local Variables: */
-/* compile-command: "nix run nixpkgs#qmk -- compile -e CONVERT_TO=elite_pi" */
+/* compile-command: "nix run nixpkgs#qmk -- compile -e CONVERT_TO=elite_pi -kb kyria -km hk" */
 /* End: */
