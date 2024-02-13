@@ -20,7 +20,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_TAB  , KC_Q ,  KC_W   ,  KC_F  ,   KC_P ,   KC_B ,                                           KC_J,   KC_L ,  KC_U ,   KC_Y ,KC_SCLN, KC_LCBR,
      CTL_ESC , KC_A ,  KC_R   ,  KC_S  ,   KC_T ,   KC_G ,                                           KC_M,   KC_N ,  KC_E ,   KC_I ,  KC_O , CTL_QUOT,
      OS_LSFT , KC_Z ,  KC_X   ,  KC_C  ,   KC_D ,   KC_V , OS_LSFT,CW_TOGG,     FKEYS , KC_LCTL ,    KC_K,   KC_H ,KC_COMM, KC_DOT ,KC_SLSH, OS_RSFT,
-                                 ADJUST, KC_LGUI,LALT_TAB,LCTL_SPC, NAV   ,     SYM   ,RSFT_BSPC,LALT_ENT, KC_RGUI, KC_APP
+                                 ADJUST, KC_LGUI,LALT_TAB,LCTL_SPC, NAV   ,     SYM   ,RSFT_ENT,LALT_BSPC, KC_RGUI, KC_APP
   ),
 /* ,-----------------------------------------.                              ,-----------------------------------------.
  * |      |      |RALT(K|RALT(K|RALT(K|      |                              |      |      |      |      | VOLU | DEL  |

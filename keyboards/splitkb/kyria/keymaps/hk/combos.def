@@ -1,7 +1,7 @@
 // Thumbs
-#define C_LT LALT_TAB
-#define C_RT LALT_ENT
-#define C_STENOT RSFT_BSPC
+#define C_LT LCTL_SPC
+#define C_RT RSFT_ENT
+#define C_STENOT SYM
 
 // Modfiers
 COMB(C_LCTL, KC_LCTL, C_LT, KC_T)
