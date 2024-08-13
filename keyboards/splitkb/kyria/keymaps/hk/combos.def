@@ -1,25 +1,29 @@
-// Thumbs
+//- Thumbs
 #define C_LT LCTL_SPC
 #define C_RT RSFT_ENT
 #define C_STENOT SYM
 
-// Modfiers
-COMB(C_LCTL, KC_LCTL, C_LT, KC_T)
-COMB(C_LAlt, KC_LALT, C_LT, KC_S)
-COMB(C_LCTL_ALT, LCTL(KC_LALT), C_LT, KC_T, KC_S)
-COMB(C_LGUI, KC_LGUI, C_LT, KC_R)
-COMB(C_LSYM, MO(_SYM), C_LT, KC_A)
-COMB(C_LSYM_GUI, LM(_SYM, MOD_LGUI), C_LT, KC_A, KC_R)
-COMB(C_LSYM_ALT, LM(_SYM, MOD_LALT), C_LT, KC_A, KC_S)
-COMB(C_LSYM_CTRL, LM(_SYM, MOD_LCTL), C_LT, KC_A, KC_T)
+//- Modfiers
+//-- Left thumb
+COMB(C_LCTL,           KC_LCTL,            C_LT,                KC_T)
+COMB(C_LAlt,           KC_LALT,            C_LT,                KC_S)
+COMB(C_LGUI,           KC_LGUI,            C_LT,                KC_R)
+COMB(C_LSYM,           MO(_SYM),           C_LT,                KC_A)
+COMB(C_LCTL_ALT,       LCTL(KC_LALT),      C_LT,                KC_T,  KC_S)
+COMB(C_LSYM_GUI,       LM(_SYM,MOD_LGUI),  C_LT,                KC_A,  KC_R)
+COMB(C_LSYM_ALT,       LM(_SYM,MOD_LALT),  C_LT,                KC_A,  KC_S)
+COMB(C_LSYM_CTRL,      LM(_SYM,MOD_LCTL),  C_LT,                KC_A,  KC_T)
+COMB(C_LSYM_GUI_CTRL,  LM(_SYM,MOD_LGUI|MOD_LCTL),  C_LT,  KC_A,  KC_R,  KC_T)
 
-COMB(C_RCTL, KC_LCTL, C_RT, KC_N)
-COMB(C_RAlt, KC_LALT, C_RT, KC_E)
-COMB(C_RCTL_ALT, RCTL(KC_LALT), C_RT, KC_N, KC_E)
-COMB(C_RGUI, KC_RGUI, C_RT, KC_I)
-COMB(C_RNAV, MO(_NAV), C_RT, KC_O)
+//-- Right thumb
+COMB(C_RCTL,      KC_LCTL,        C_RT,  KC_N)
+COMB(C_RAlt,      KC_LALT,        C_RT,  KC_E)
+COMB(C_RCTL_ALT,  RCTL(KC_LALT),  C_RT,  KC_N,  KC_E)
+COMB(C_RGUI,      KC_RGUI,        C_RT,  KC_I)
+COMB(C_RNAV,      MO(_NAV),       C_RT,  KC_O)
 
-// Parenthesis ([{}])
+//- Symbols
+//-- Parenthesis ([{}])
 COMB(C_LPRNT, KC_LPRN, KC_R, KC_W)
 COMB(C_LBRC,  KC_LBRC, KC_S, KC_F)
 COMB(C_LCBR,  KC_LCBR, KC_T, KC_P)
@@ -32,7 +36,12 @@ COMB(C_UNDS,  KC_UNDS, KC_N, KC_H)
 
 SUBS(C_RARROW,  "->", KC_I, KC_DOT)
 
-// Postfix
+//-- SWE
+COMB(C_SE_AA, SE_ARNG, KC_A, KC_O)
+COMB(C_SE_AE, SE_ADIA, KC_A, KC_E)
+COMB(C_SE_OE, SE_ODIA, KC_A, KC_E)
+
+//- Postfix
 SUBS(C_POSTFIX_ARE, SS_TAP(X_BACKSPACE) "'re ", CTL_QUOT, KC_R)
 SUBS(C_POSTFIX_IS,  SS_TAP(X_BACKSPACE) "'s ", CTL_QUOT, KC_S)
 SUBS(C_POSTFIX_NOT, SS_TAP(X_BACKSPACE) "n't ", CTL_QUOT, KC_T)
@@ -40,7 +49,7 @@ SUBS(C_POSTFIX_HAVE, SS_TAP(X_BACKSPACE) "'ve ", CTL_QUOT, KC_V)
 SUBS(C_POSTFIX_WILL, SS_TAP(X_BACKSPACE) "'ll ", CTL_QUOT, KC_W)
 SUBS(C_POSTFIX_COMMA, SS_TAP(X_BACKSPACE) ", ", C_STENOT, KC_COMMA)
 
-// Steno-Lite
+//- Steno-Lite
 SUBS(C_STENO_AND, "and ", C_STENOT, KC_A)
 SUBS(C_STENO_ARE, "are ", C_STENOT, KC_A, KC_R)
 SUBS(C_STENO_ABOUT, "about ", C_STENOT, KC_A, KC_B)
