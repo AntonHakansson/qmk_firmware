@@ -1,45 +1,28 @@
-//- Thumbs
-#define C_LT LCTL_SPC
-#define C_RT RSFT_ENT
 #define C_STENOT SYM
 
-//- Modfiers
-//-- Left thumb
-COMB(C_LCTL,           KC_LCTL,            C_LT,                KC_T)
-COMB(C_LAlt,           KC_LALT,            C_LT,                KC_S)
-COMB(C_LGUI,           KC_LGUI,            C_LT,                KC_R)
-COMB(C_LSYM,           MO(_SYM),           C_LT,                KC_A)
-COMB(C_LCTL_ALT,       LCTL(KC_LALT),      C_LT,                KC_T,  KC_S)
-COMB(C_LSYM_GUI,       LM(_SYM,MOD_LGUI),  C_LT,                KC_A,  KC_R)
-COMB(C_LSYM_ALT,       LM(_SYM,MOD_LALT),  C_LT,                KC_A,  KC_S)
-COMB(C_LSYM_CTRL,      LM(_SYM,MOD_LCTL),  C_LT,                KC_A,  KC_T)
-COMB(C_LSYM_GUI_CTRL,  LM(_SYM,MOD_LGUI|MOD_LCTL),  C_LT,  KC_A,  KC_R,  KC_T)
+//- Combo Modfiers
+#define C_LT LCTL_SPC
+#define C_RT RSFT_ENT
 
-//-- Right thumb
-COMB(C_RCTL,      KC_LCTL,        C_RT,  KC_N)
-COMB(C_RAlt,      KC_LALT,        C_RT,  KC_E)
-COMB(C_RCTL_ALT,  RCTL(KC_LALT),  C_RT,  KC_N,  KC_E)
-COMB(C_RGUI,      KC_RGUI,        C_RT,  KC_I)
-COMB(C_RNAV,      MO(_NAV),       C_RT,  KC_O)
+COMB(C_FUNC, MO(_FUNCTION), C_LT, C_RT)
+
+#include "combo_mods.def"
 
 //- Symbols
-//-- Parenthesis ([{}])
+//-- Parenthesis <([{}])>
+COMB(C_LABK,  KC_LABK, KC_A, KC_Q)
 COMB(C_LPRNT, KC_LPRN, KC_R, KC_W)
 COMB(C_LBRC,  KC_LBRC, KC_S, KC_F)
 COMB(C_LCBR,  KC_LCBR, KC_T, KC_P)
 COMB(C_RPRNT, KC_RCBR, KC_N, KC_L)
 COMB(C_RBRC,  KC_RBRC, KC_E, KC_U)
 COMB(C_RCBR,  KC_RPRN, KC_I, KC_Y)
+COMB(C_RABK,  KC_RABK, KC_O, KC_SCLN)
 
 COMB(C_MINS,  KC_MINS, KC_T, KC_D)
 COMB(C_UNDS,  KC_UNDS, KC_N, KC_H)
 
 SUBS(C_RARROW,  "->", KC_I, KC_DOT)
-
-//-- SWE
-COMB(C_SE_AA, SE_ARNG, KC_A, KC_O)
-COMB(C_SE_AE, SE_ADIA, KC_A, KC_E)
-COMB(C_SE_OE, SE_ODIA, KC_A, KC_E)
 
 //- Postfix
 SUBS(C_POSTFIX_ARE, SS_TAP(X_BACKSPACE) "'re ", CTL_QUOT, KC_R)

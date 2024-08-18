@@ -5,6 +5,7 @@ enum layers {
     _NAV,
     _SYM,
     _FUNCTION,
+    _SWAP,
 };
 
 //- Readability Aliases
